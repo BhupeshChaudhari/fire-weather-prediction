@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@300&family=Dancing+Script&family=Lilita+One&family=Orbitron&family=Righteous&family=Russo+One&family=Secular+One&display=swap" rel="stylesheet">
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
+    crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static 'myapp/style.css' %}">
+
+
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="container">
+        <div class="container1">
+            <div class="title1">FWI Prediction</div>
+            <div class="title">Algerian Forest Fires</div>
+        </div>
+        <br>
+        <div class="content">
+        <form method="POST" action="#">
+            {% csrf_token %}
+            <div class="user-details">
+            <div class="input-box">
+                <span class="details">Temperature</span>
+                <input id="Temperature" name="Temperature" type="text" placeholder="Enter Temperature" required>
+            </div>
+            <div class="input-box">
+                <span class="details">RH</span>
+                <input id="RH" name="RH" type="text" placeholder="Enter Relative Humidity" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Ws</span>
+                <input id="Ws" name="Ws" type="text" placeholder="Enter Wind Speed" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Rain</span>
+                <input id="Rain" name="Rain" type="text" placeholder="Enter Rain (mm)" required>
+            </div>
+            <div class="input-box">
+                <span class="details">FFMC</span>
+                <input id="FFMC" name="FFMC" type="text" placeholder="Enter Fine Fuel Moisture Code" required>
+            </div>
+            <div class="input-box">
+                <span class="details">DMC</span>
+                <input id="DMC" name="DMC" type="text" placeholder="Duff Moisture Code" required>
+            </div>
+            <div class="input-box">
+                <span class="details">ISI</span>
+                <input id="ISI" name="ISI" type="text" placeholder="Initial Spread Index" required>
+            </div>
+            <div class="input-box">
+                <span class="details">Classes</span>
+                <input id="Classes" name="Classes" type="text" placeholder="Classes 0/1" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Region</span>
+                    <input id="Region" name="Region" type="text" placeholder="Enter Region 0/1" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Predicted FWI (Fire Weather Index)</span> 
+                    {% for i in result %}
+                    <!-- <input id="FWI" name="FWI" type="button" class="btn btn-secondary" value="{{i}}"> -->
+                    <input readonly="" type="text" class="form-control" id="FWI" name="FWI" value="{{i}}" > 
+                        <!-- <span class="badge badge-light"></span>
+                        <span class="sr-only">unread messages</span> -->
+
+                    {% endfor %}
+                </div>
+                
+            </div>
+                <div class="button">
+            <input type="submit" value="Submit">
+
+            </div>
+        </form>
+        </div>
+    </div>
+
+</body>
+</html>
+    
